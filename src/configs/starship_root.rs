@@ -18,6 +18,8 @@ pub struct StarshipRootConfig {
     pub scan_timeout: u64,
     pub command_timeout: u64,
     pub add_newline: bool,
+    pub default_module_prefix: String,
+    pub default_module_suffix: String,
     pub follow_symlinks: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub palette: Option<String>,
@@ -133,6 +135,8 @@ impl Default for StarshipRootConfig {
             format: "$all".to_string(),
             right_format: String::new(),
             continuation_prompt: "[∙](bright-black) ".to_string(),
+            default_module_prefix: "via default ".to_string(),
+            default_module_suffix: " ".to_string(),
             profiles: Default::default(),
             scan_timeout: 30,
             command_timeout: 500,

@@ -177,6 +177,8 @@ pub fn module<'a>(context: &'a Context) -> Option<Module<'a>> {
         formatter
             .map_meta(|var, _| match var {
                 "symbol" => Some(config.symbol),
+                "prefix" => Some(config.prefix),
+                "suffix" => Some(config.suffix),
                 _ => None,
             })
             .map_style(|variable| match variable {
@@ -187,6 +189,8 @@ pub fn module<'a>(context: &'a Context) -> Option<Module<'a>> {
                 "version" => get_module_version(context, &config, &rust_env_info).map(Ok),
                 "numver" => get_module_numeric_version(context, &config, &rust_env_info).map(Ok),
                 "toolchain" => get_toolchain_version(context, &config, &rust_env_info).map(Ok),
+                "default_module_prefix" => Some(Ok(context.root_config.default_module_prefix.clone())),
+                "default_module_suffix" => Some(Ok(context.root_config.default_module_suffix.clone())),
                 _ => None,
             })
             .parse(None, Some(context))

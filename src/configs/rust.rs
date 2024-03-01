@@ -9,6 +9,8 @@ use serde::{Deserialize, Serialize};
 #[serde(default)]
 pub struct RustConfig<'a> {
     pub format: &'a str,
+    pub prefix: &'a str,
+    pub suffix: &'a str,
     pub version_format: &'a str,
     pub symbol: &'a str,
     pub style: &'a str,
@@ -21,7 +23,9 @@ pub struct RustConfig<'a> {
 impl<'a> Default for RustConfig<'a> {
     fn default() -> Self {
         RustConfig {
-            format: "via [$symbol($version )]($style)",
+            format: "[$prefix$symbol($version)$suffix]($style)",
+            prefix: "$default_module_prefix",
+            suffix: "$default_module_suffix",
             version_format: "v${raw}",
             symbol: "🦀 ",
             style: "bold red",
